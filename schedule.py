@@ -83,7 +83,7 @@ agents = [
   {"name": "Agent 1", "gender": "male", "leave": False, "language": "Both", 'week_start':"sun"},
   {"name": "Agent 2", "gender": "female","leave": False, "language": "Ar", 'week_start':"tue"},
   {"name": "Agent 3", "gender": "male", "leave": False, "language": "En", 'weee_start':"tue"  },  
-  {"name": "Agent 1", "gender": "female", "leave": True, "language": "Both", 'week_start':"sun"},
+  {"name": "Agent 4", "gender": "female", "leave": True, "language": "Both", 'week_start':"sun"},
 ]
 
 schedule(agents, "6.15.2025")
