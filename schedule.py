@@ -35,12 +35,12 @@ def schedule(agents, start_date_str):
         # Female Bilingual agents
         if agent["gender"] == "female" and agent["language"] == "Both":
             agent["schedule"] = random.choices(schedules[1:2], k=5)
-            agent["date"] = excel_dates[2:7] if "ty" in agent else excel_dates[0:5]
+            agent["date"] = excel_dates[2:7] if agent['week_start'] == "sun" else excel_dates[0:5]
 
         # Female Arabic-speaking agents
         elif agent["gender"] == "female" and agent["language"] == "Ar":
             agent["schedule"] = random.choices(schedules[1:3], k=5)
-            agent["date"] = excel_dates[2:7] if "ty" in agent else excel_dates[0:5]
+            agent["date"] = excel_dates[2:7] if agent['week_start'] == "sun" else excel_dates[0:5]
 
         # Female English-speaking agents
         elif agent["gender"] == "female" and agent["language"] == "En":
@@ -50,7 +50,7 @@ def schedule(agents, start_date_str):
         # Male Bilingual agents
         elif agent["gender"] == "male" and agent["language"] == "Both":
             agent["schedule"] = random.choices(schedules[6:], k=5)
-            agent["date"] = excel_dates[2:7] if "ty" in agent else excel_dates[0:5]
+            agent["date"] = excel_dates[2:7] if agent['week_start'] == "sun" else excel_dates[0:5]
 
         # Male English-speaking agents
         elif agent["gender"] == "male" and agent["language"] == "En":
@@ -77,38 +77,13 @@ def schedule(agents, start_date_str):
     with pd.ExcelWriter("x.xlsx", engine="xlsxwriter", datetime_format='mm-dd-yyyy') as writer:
         df.to_excel(writer, index=False)
 
-# Example usage:
-# agents = [
-#     {"name": "Ali", "gender": "male", "language": "En", "leave": False},
-#     {"name": "Sara", "gender": "female", "language": "Both", "leave": False, "ty": "x"},
-# ]
-# schedule(agents, "06.17.2025")
-    
-    
-    
 # Example usage
 
-
 agents = [
-  {"name": "Ahmed", "gender": "male", "leave": True, "language": "Both", 'ty':"x"},
-  {"name": "Abdallah", "gender": "male","leave": True, "language": "Both", 'ty':"x"},
-  {"name": "Abubker", "gender": "male", "leave": True, "language": "Both", 'ty':"x"  },  
-  {"name": "Khalid", "gender": "male", "leave": False, "language": "Both" },
-  {"name": "Basheer", "gender": "male", "leave": False, "language": "Both", 'ty':"x"},
-  {"name": "Fatima", "gender": "female", "leave": False, "language": "Both"},  
-  {"name": "Shaimaa-H", "gender": "female", "leave": False, "language": "Ar"},
-  {"name": "Shaimaa-R", "gender": "female", "leave": False, "language": "Both", 'ty':"x"},
-  {"name": "Salsabeel", "gender": "female", "leave": False, "language": "Both", 'ty':"x"},  
-  {"name": "Reem", "gender": "female", "leave": False ,"language": "Ar", 'ty':"x"},
-  {"name": "Abeir", "gender": "female", "leave": False, "language": "Both"},
-  {"name": "Hiba", "gender": "female", "leave": True , "language": "Both"},  
-  {"name": "Yassin", "gender": "male", "leave": True, "language": "Both"},
-  {"name": "Jalal", "gender": "male", "leave": False, "language": "Both"},
-  {"name": "Sohaila", "gender": "female", "leave": False, "language": "Both"},  
-  {"name": "Meriem", "gender": "female", "leave": False, "language": "Both", 'ty':"x"},
-  {"name": "John", "gender": "male", "leave": False, "language": "En", 'ty':"x"},
-  {"name": "Raees", "gender": "male", "leave": False, "language": "En", 'ty':"x"},  
-  {"name": "Trixie", "gender": "female", "leave": False, "language": "En"},  
+  {"name": "Agent 1", "gender": "male", "leave": False, "language": "Both", 'week_start':"sun"},
+  {"name": "Agent 2", "gender": "female","leave": False, "language": "Ar", 'week_start':"tue"},
+  {"name": "Agent 3", "gender": "male", "leave": False, "language": "En", 'weee_start':"tue"  },  
+  {"name": "Agent 1", "gender": "female", "leave": True, "language": "Both", 'week_start':"sun"},
 ]
 
 schedule(agents, "6.15.2025")
